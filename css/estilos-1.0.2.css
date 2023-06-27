@@ -1,0 +1,68 @@
+﻿/* -- Arquivo Versão: 1.0.2 -- */
+
+:root {
+    /*--widthPadrao: 768px;
+    --heightPadrao: 1366px;*/
+
+    --widthPadrao: 1080px;
+    --heightPadrao: 1920px;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+body {
+    background-color: #DEA175;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+/*Anuncios.img {
+    width: var(--widthPadrao);
+    height: var(--heightPadrao);
+}*/
+
+
+#SenhaDigitada {
+    color: #000;
+    font-weight: bold;
+}
+
+#SenhaTelaCheia {
+    text-align: center;
+    font-weight: bold;
+    display: none;
+    width: var(--widthPadrao);
+    height: var(--heightPadrao);
+}
+
+#SenhaAtual {
+    font-weight: bolder;
+    font-size: 16.5em;
+    color: #000;
+}
+
+h1 {
+    font-weight: bold;
+    color: #000;
+}
+
+
+#DigitaSenha {
+    background-color: #000;
+    color: white;
+}
+
+#SenhasAnteriores label {
+    font-size: 9em;
+    font-weight: bold;
+    color: #000;
+}
+
+
+#Anuncios {
+    width: var(--widthPadrao);
+    height: var(--heightPadrao);
+    background-color: black;
+    display: none;
+}

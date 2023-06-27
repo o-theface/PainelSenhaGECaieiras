@@ -1,0 +1,112 @@
+﻿<!-- Arquivo Versão: 2.0.3  -->
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Senhas - Sesc Ararquara</title>
+
+    <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="bootstrap-5.1.3/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts-1.0.1.js"></script>
+
+    <link href="bootstrap-5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/estilos-1.0.1.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div id="Anuncios">
+        <img id="logoDescanso" src="images/logoSescDescanso.png" style="position:absolute;" />
+    </div>
+
+    <div id="AreaUtil">
+        <div class="row mt-5">
+            <div class="col-1"></div>
+            <div class="col-10 rounded text-center pb-4 pt-3" style="background-color:white">
+                <img src="images/logoSesc.jpg" alt="logoSesc" class="col-10" />
+            </div>
+            <div class="col-1"></div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-1"></div>
+            <div class="col-10 rounded text-center bg-warning">
+                <h1 style="font-size: 3.5em;">PEDIDO ATUAL</h1>
+            </div>
+            <div class="col-1"></div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-1"></div>
+            <div class="col-10 rounded text-center bg-warning">
+                <label id="SenhaAtual">0000</label>
+            </div>
+            <div class="col-1"></div>
+        </div>
+
+        <div class="row text-center mt-5">
+            <div class="col-12">
+                <label style="color: #E8BB00; font-size:3.5em; font-weight:bold;">ÚLTIMOS PEDIDOS</label>
+            </div>
+        </div>
+
+        <div class="row align-middle" id="SenhasAnteriores">
+
+            <div class="col-6">
+                <div class="rounded text-center bg-light" style="margin-left: 0.4em; margin-right: 0.4em;">
+                    <label id="SenhaAnterior1">0000</label>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="rounded text-center bg-light" style="margin-left: 0.4em; margin-right: 0.4em;">
+                    <label id="SenhaAnterior2">0000</label>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row mt-4 align-middle" id="SenhasAnteriores">
+
+            <div class="col-6">
+                <div class="rounded text-center bg-light" style="margin-left: 0.4em; margin-right: 0.4em;">
+                    <label id="SenhaAnterior3">0000</label>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="rounded text-center bg-light" style="margin-left: 0.4em; margin-right: 0.4em;">
+                    <label id="SenhaAnterior4">0000</label>
+                </div>
+            </div>
+
+        </div>
+
+        <br />
+
+        <div class="row mt-4 align-middle">
+            <div class="col-12 text-center">
+                <div class="rounded bg-light m-2">
+                    <h1 style="color: #014888; font-size: 5em; font-weight: 600;">COMEDORIA</h1>
+                    <br />
+                    <h1 style="color: #014888; font-size: 5em; font-weight: 600;">SESC ARARAQUARA</h1>
+                </div>
+            </div>
+        </div>
+        <label id="DigitaSenha" style="width:50px; color:white; font-weight:bold; font-size:1em;" />
+    </div>
+
+    <div id="SenhaTelaCheia">
+        <center>
+            <span id="SenhaDigitada" class="align-text-middle">0000</span>
+        </center>
+        <audio id="AudioSenha" autostart="false" src="media/notify.wav"></audio>
+    </div>
+	<!-- 12/05/2022 - Desenvolvido por Cassio Petrucelli (Unidade Ararquara) - cassio.petrucelli@sescsp.org.br -->
+</body>
+</html>
