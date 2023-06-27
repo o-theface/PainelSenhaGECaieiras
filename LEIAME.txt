@@ -1,0 +1,9 @@
+--- Arquivo LEIAME Sistema de Senhas da Lanchonete - Sesc Araraquara --
+
+ITEM 01 - Habilitar Tela Cheia na Inicialização do Sistema
+
+Passo 1: Rodar o reg chromeFullScreen.reg para habilitar o Chrome a iniciar no modo tela cheia.
+
+Passo 2: Gerar um atalho colocando o item --start-fullscreen nas configurações do Destino. Exemplo.
+
+		"C:\Program Files\Google\Chrome\Application\chrome.exe" --start-fullscreen "C:\Senha Lanchonete\SenhaLanchonete.Current.html"
