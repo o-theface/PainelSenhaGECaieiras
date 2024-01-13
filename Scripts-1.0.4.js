@@ -1,4 +1,4 @@
-// -- Arquivo Versão: 1.0.3 --
+// -- Arquivo Versão: 1.0.4 --
 
 $(document).ready(function () {
 
@@ -62,12 +62,12 @@ $(document).ready(function () {
 
 
             // -- Toca o audio inicial de chamada --
-            playSound('AudioSenha');
+            //playSound('AudioSenha');
 
             // -- Prepara o som do número chamado e toca-o --
             var senhaNum = parseInt(senha);
-            $("#AudioSenhaNumero").attr("src", "media/SenhasNumeros/" + senhaNum + ".wav");
-            setTimeout(function () { playSound('AudioSenhaNumero') }, 1200);
+            $("#AudioSenhaNumero").attr("src", "media/SenhasNumeros/Senha (" + senhaNum + ").wav");
+            setTimeout(function () { playSound('AudioSenhaNumero') }, 10);
 
 
             setTimeout(EscondeSenhaTelaCheia, 5000);
