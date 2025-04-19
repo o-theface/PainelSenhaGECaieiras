@@ -53,7 +53,7 @@ $(document).ready(function () {
                 $("#DigitaSenha").select();
             }
 
-            $("#DigitaSenha").text(senha);
+            $("#DigitaSenha").val(senha);
 
             var valor = $("#DigitaSenha").val();
             valor = senha;
