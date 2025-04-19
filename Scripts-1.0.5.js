@@ -1,4 +1,4 @@
-// -- Arquivo Versão: 1.0.5 --
+// -- Arquivo Versï¿½o: 1.0.5 --
 
 $(document).ready(function () {
 
@@ -7,17 +7,38 @@ $(document).ready(function () {
     const widthPadrao = 1080; // -- Tamanho horizontal da tela --
     const heightLogo = 200; // -- Altura da logo --
     const widthLogo = 400; // -- Largura da logo --
+    var calledOrderTimeout = 4000; // -- Tempo que a senha chamada fica na tela --
 
     //console.log(x);
     //console.log(y);
     var tempo = tempoInicial;
     var senha = "";
 
+    $(window).on('load', function () {
+        // Show #AreaUtil when the window is fully loaded
+        $("#AreaUtil").show();
+        $("#Config").show();
+        $("#SenhaTelaCheia").hide();
+        $("#Anuncios").hide();
+    });
+
+    $(document).on('keydown', function(event) {
+        if (event.keyCode === 27) { // 27 is the keyCode for Esc
+            EscondeSenhaTelaCheia();
+            HideConfig();
+            EscondeAnuncios();
+        }
+    });
+
     $(document).on('keypress', function (e) {
         //alert(e.keyCode);
 
+        // -- Show config --
+        if ((e.keyCode == 67) || (e.keyCode == 99))  { // -- C ou c--
+            ShowConfig();
+        }        
 
-        // -- Enquanto está exibindo a senha na tela, não aceita entrada de outros caracteres --
+        // -- Enquanto estï¿½ exibindo a senha na tela, nï¿½o aceita entrada de outros caracteres --
         if ($("#DigitaSenha").val() !== "---") {
 
             if (e.keyCode != 13) {
@@ -27,7 +48,9 @@ $(document).ready(function () {
 
             // -- '=', '/', '*', '-', '+', '.' --        
             if (e.keyCode == 61 || e.keyCode == 47 || e.keyCode == 42 || e.keyCode == 45 || e.keyCode == 43 || e.keyCode == 46) {
+                $("#DigitaSenha").text("");
                 senha = "";
+                $("#DigitaSenha").select();
             }
 
             $("#DigitaSenha").text(senha);
@@ -37,7 +60,7 @@ $(document).ready(function () {
 
             if (e.keyCode == 13 && valor != "") {
 
-                // -- Roda os valores das senhas anteriores, caso não exista a senha chamada --
+                // -- Roda os valores das senhas anteriores, caso nï¿½o exista a senha chamada --
                 $("#SenhaAnterior4").text($("#SenhaAnterior3").text());
                 $("#SenhaAnterior3").text($("#SenhaAnterior2").text());
                 $("#SenhaAnterior2").text($("#SenhaAnterior1").text());
@@ -50,43 +73,54 @@ $(document).ready(function () {
                 $("#DigitaSenha").val("---");
                 //alert($("#DigitaSenha").val());
 
-                // -- Vrifica a quantidade de caracteres da senha para acertar o tamanho de exibição --
+                // -- Vrifica a quantidade de caracteres da senha para acertar o tamanho de exibiï¿½ï¿½o --
                 /*if (valor.length <= 3)
                     $("span").css("font-size", "27em");
                 else if (valor.length >= 4)
                     $("span").css("font-size", "20em");*/
 
-                // -- Máximo de 3 valores no visor --
-                $("span").css("font-size", "30em");
+                // -- Mï¿½ximo de 3 valores no visor --
+                //$("span").css("font-size", "30em");
 
 
                 EscondeAnuncios();
                 ExibeSenhaTelaCheia();
 
-                tempo = tempoInicial; // -- Reseta o tempo de aparição do descanso de tela --
+                tempo = tempoInicial; // -- Reseta o tempo de apariï¿½ï¿½o do descanso de tela --
 
 
 
 
                 // -- Toca o audio inicial de chamada --
-                //playSound('AudioSenha');
+                playSound('AudioSenha');
 
-                // -- Prepara o som do número chamado e toca-o --
-                var senhaNum = parseInt(senha);
-                $("#AudioSenhaNumero").attr("src", "media/SenhasNumeros/Senha (" + senhaNum + ").wav");
-                setTimeout(function () { playSound('AudioSenhaNumero') }, 100);
+                // -- Prepara o som do nï¿½mero chamado e toca-o --
+                //var senhaNum = parseInt(senha);
+                //$("#AudioSenhaNumero").attr("src", "media/SenhasNumeros/Senha (" + senhaNum + ").wav");
+                //$("#AudioSenhaNumero").attr("src", "media/notify.wav");
+                //setTimeout(function () { playSound('AudioSenhaNumero') }, 100);
 
-                setTimeout(EscondeSenhaTelaCheia, 4000);
+                if (calledOrderTimeout > 0) {
+                    setTimeout(EscondeSenhaTelaCheia, calledOrderTimeout);
+                };
 
-                //$("#DigitaSenha").text("");
-                //senha = "";
-                //$("#DigitaSenha").select();
+                $("#DigitaSenha").text("");
+                senha = "";
+                $("#DigitaSenha").select();
             }
         }
     });
 
+    // -- Saveconfig onClick --
+    $("#ConfigSave").on('click', function () {
+        SaveConfig();
+        LoadConfig();
+        HideConfig();
+    });
+
     function ExibeSenhaTelaCheia() {
         $("#AreaUtil").hide();
+        $("#Config").hide();
         $("#SenhaTelaCheia").show();
     }
 
@@ -96,7 +130,7 @@ $(document).ready(function () {
         $("#AreaUtil").show();
         $("#DigitaSenha").select();
 
-        // -- Ao "esconder" a tela da senha chamada, libera digitação de caracteres --
+        // -- Ao "esconder" a tela da senha chamada, libera digitaï¿½ï¿½o de caracteres --
         $("#DigitaSenha").val("");
         senha = "";
         $("#DigitaSenha").select();
@@ -107,8 +141,26 @@ $(document).ready(function () {
         sample.play();
     }
 
+    function ShowConfig() {        
+        $("#AreaUtil").hide();
+        $("#SenhaTelaCheia").hide();
+        $("#Config").show();
+    }
 
-    // -- Temporizador para aparecer os anúncios --
+    function HideConfig() {
+        $("#Config").hide();
+        $("#SenhaTelaCheia").hide();
+        $("#AreaUtil").show();
+        $("#DigitaSenha").select();
+
+        // -- Ao "esconder" a tela da senha chamada, libera digitaï¿½ï¿½o de caracteres --
+        $("#DigitaSenha").val("");
+        senha = "";
+        $("#DigitaSenha").select();
+    };
+
+
+    // -- Temporizador para aparecer os anï¿½ncios --
     setInterval(function () {
         tempo--;
         //console.log("Diminuiu tempo: " + tempo);
@@ -154,7 +206,7 @@ $(document).ready(function () {
     var dir_h = 'right';
     var dir_v = 'down';
 
-    // -- Gera numeros aleatorios para posição inicial da imagem de descanso de tela dentro da área da tela --
+    // -- Gera numeros aleatorios para posiï¿½ï¿½o inicial da imagem de descanso de tela dentro da ï¿½rea da tela --
     //var x = Math.floor(Math.random() * (widthPadrao - widthLogo));
     //var y = Math.floor(Math.random() * (heightPadrao - heightLogo));
     //$("#logoDescanso").offset({ top: y, left: x });
@@ -205,4 +257,81 @@ $(document).ready(function () {
 
         $("#logoDescanso").offset({ top: y, left: x });
     }, 10); // -- Para alterar a velocidade da logo, altere esse valor --
+
+    // -- Save Configuration --
+    function SaveConfig() {
+        // -- Salva as configuraï¿½ï¿½es --
+        var config = {
+            main : {
+                backgroundColor: $("#mainBackgroundColor").val(),
+                actualOrderTimeout: $("#mainActualOrderTimeout").val(),                
+            },
+            actualOrder: {
+                backgroundColor: $("#actualOrderBackgroundColor").val(),                
+                textColor: $("#actualOrderTextColor").val(),
+                fontSize: $("#actualOrderFontSize").val(),
+            },
+            lastOrders: {
+                labelTextColor: $("#lastOrdersLabelTextColor").val(),
+                labelFontSize: $("#lastOrdersLabelFontSize").val(),
+                backgroundColor: $("#lastOrdersBackgroundColor").val(),
+                textColor: $("#lastOrdersTextColor").val(),
+                fontSize: $("#lastOrdersFontSize").val(),
+            },
+            fullScreenOrder: {                
+                backgroundColor: $("#fullScreenOrderBackgroundColor").val(),
+                textColor: $("#fullScreenOrderTextColor").val(),
+                fontSize: $("#fullScreenOrderFontSize").val(),
+            },
+        };
+
+        // -- Salva no localStorage --
+        localStorage.setItem('config', JSON.stringify(config));
+    }
+    // -- Load Configuration --
+    function LoadConfig() {
+        // -- Carrega as configuraï¿½ï¿½es --
+        var config = JSON.parse(localStorage.getItem('config'));
+        if (config) {
+            // -- Carrega as configuraï¿½ï¿½es --
+            $("#mainBackgroundColor").val(config.main.backgroundColor);
+            $("#mainActualOrderTimeout").val(config.main.actualOrderTimeout);
+
+            $("#actualOrderBackgroundColor").val(config.actualOrder.backgroundColor);
+            $("#actualOrderTextColor").val(config.actualOrder.textColor);
+            $("#actualOrderFontSize").val(config.actualOrder.fontSize);
+
+            $("#lastOrdersLabelTextColor").val(config.lastOrders.labelTextColor);
+            $("#lastOrdersLabelFontSize").val(config.lastOrders.labelFontSize);            
+            $("#lastOrdersBackgroundColor").val(config.lastOrders.backgroundColor);
+            $("#lastOrdersTextColor").val(config.lastOrders.textColor);
+            $("#lastOrdersFontSize").val(config.lastOrders.fontSize);
+
+            $("#fullScreenOrderBackgroundColor").val(config.fullScreenOrder.backgroundColor);
+            $("#fullScreenOrderTextColor").val(config.fullScreenOrder.textColor);
+            $("#fullScreenOrderFontSize").val(config.fullScreenOrder.fontSize);
+
+            // -- Aplica as configuraï¿½ï¿½es --
+            $("body").css("background-color", config.main.backgroundColor);
+            calledOrderTimeout = config.main.actualOrderTimeout * 1000; // -- Converte para milissegundos --
+
+            $("#actualOrderLabelContainer").css("background-color", config.actualOrder.backgroundColor);
+            $("#actualOrderLabel").css("color", config.actualOrder.textColor);
+            $("#actualOrderLabel").css("font-size", config.actualOrder.fontSize + "px");
+            $("#actualOrderInfo").css("background-color", config.actualOrder.backgroundColor);
+            $("#SenhaAtual").css("color", config.actualOrder.textColor);
+            $("#SenhaAtual").css("font-size", config.actualOrder.fontSize + "px");
+
+            $("#lastOrdersLabel").css("color", config.lastOrders.labelTextColor);
+            $("#lastOrdersLabel").css("font-size", config.lastOrders.labelFontSize + "px");
+            $(".lastOrdersBackground").css("background-color", config.lastOrders.backgroundColor);
+            $(".lastOrdersText").css("color", config.lastOrders.textColor);
+            $(".lastOrdersText").css("font-size", config.lastOrders.fontSize + "px");
+            $("#SenhaTelaCheia").css("background-color", config.fullScreenOrder.backgroundColor);
+            $("#SenhaDigitada").css("color", config.fullScreenOrder.textColor);
+            $("#SenhaDigitada").css("font-size", config.fullScreenOrder.fontSize + "px");            
+        }
+    }
+    // -- Load Configuration on page load --
+    LoadConfig();
 });

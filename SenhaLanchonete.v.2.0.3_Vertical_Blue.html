@@ -27,23 +27,23 @@
     <div id="AreaUtil">
         <div class="row mt-5">
             <div class="col-1"></div>
-            <div class="col-10 rounded text-center pb-4 pt-3" style="background-color:white">
+            <!-- <div class="col-10 rounded text-center pb-4 pt-3" style="background-color:white">
                 <img src="images/logoSesc.jpg" alt="logoSesc" class="col-10" />
+            </div> -->
+            <div class="col-1"></div>
+        </div>
+
+        <div id="actualOrderLabelContainer" class="row">
+            <div class="col-1"></div>
+            <div class="col-10 rounded text-center">
+                <h1 id="actualOrderLabel" style="font-size: 3.5em;">PEDIDO ATUAL</h1>
             </div>
             <div class="col-1"></div>
         </div>
 
-        <div class="row mt-4">
+        <div id="actualOrderInfo" class="row mt-4">
             <div class="col-1"></div>
-            <div class="col-10 rounded text-center bg-warning">
-                <h1 style="font-size: 3.5em;">PEDIDO ATUAL</h1>
-            </div>
-            <div class="col-1"></div>
-        </div>
-
-        <div class="row mt-4">
-            <div class="col-1"></div>
-            <div class="col-10 rounded text-center bg-warning">
+            <div class="col-10 rounded text-center">
                 <label id="SenhaAtual">0000</label>
             </div>
             <div class="col-1"></div>
@@ -51,21 +51,21 @@
 
         <div class="row text-center mt-5">
             <div class="col-12">
-                <label style="color: #E8BB00; font-size:3.5em; font-weight:bold;">ÚLTIMOS PEDIDOS</label>
+                <label id="lastOrdersLabel" style="color: #E8BB00; font-size:3.5em; font-weight:bold;">ÚLTIMOS PEDIDOS</label>
             </div>
         </div>
 
         <div class="row align-middle" id="SenhasAnteriores">
 
             <div class="col-6">
-                <div class="rounded text-center bg-light" style="margin-left: 0.4em; margin-right: 0.4em;">
-                    <label id="SenhaAnterior1">0000</label>
+                <div class="rounded text-center lastOrdersBackground" style="margin-left: 0.4em; margin-right: 0.4em;">
+                    <label class="lastOrdersText" id="SenhaAnterior1">0000</label>
                 </div>
             </div>
 
             <div class="col-6">
-                <div class="rounded text-center bg-light" style="margin-left: 0.4em; margin-right: 0.4em;">
-                    <label id="SenhaAnterior2">0000</label>
+                <div class="rounded text-center lastOrdersBackground" style="margin-left: 0.4em; margin-right: 0.4em;">
+                    <label class="lastOrdersText" id="SenhaAnterior2">0000</label>
                 </div>
             </div>
 
@@ -74,14 +74,14 @@
         <div class="row mt-4 align-middle" id="SenhasAnteriores">
 
             <div class="col-6">
-                <div class="rounded text-center bg-light" style="margin-left: 0.4em; margin-right: 0.4em;">
-                    <label id="SenhaAnterior3">0000</label>
+                <div class="rounded text-center lastOrdersBackground" style="margin-left: 0.4em; margin-right: 0.4em;">
+                    <label class="lastOrdersText" id="SenhaAnterior3">0000</label>
                 </div>
             </div>
 
             <div class="col-6">
-                <div class="rounded text-center bg-light" style="margin-left: 0.4em; margin-right: 0.4em;">
-                    <label id="SenhaAnterior4">0000</label>
+                <div class="rounded text-center lastOrdersBackground" style="margin-left: 0.4em; margin-right: 0.4em;">
+                    <label class="lastOrdersText" id="SenhaAnterior4">0000</label>
                 </div>
             </div>
 
@@ -89,7 +89,7 @@
 
         <br />
 
-        <div class="row mt-4 align-middle">
+        <!-- <div class="row mt-4 align-middle">
             <div class="col-12 text-center">
                 <div class="rounded bg-light m-2">
                     <h1 style="color: #014888; font-size: 5em; font-weight: 600;">COMEDORIA</h1>
@@ -97,16 +97,94 @@
                     <h1 style="color: #014888; font-size: 5em; font-weight: 600;">SESC ARARAQUARA</h1>
                 </div>
             </div>
-        </div>
+        </div> -->
         <label id="DigitaSenha" style="width:50px; color:white; font-weight:bold; font-size:1em;" />
     </div>
 
     <div id="SenhaTelaCheia">
-        <center>
-            <span id="SenhaDigitada" class="align-text-middle">0000</span>
-        </center>
+        <span id="SenhaDigitada" class="align-text-middle">0000</span>
         <audio id="AudioSenha" autostart="false" src="media/notify.wav"></audio>
         <audio id="AudioSenhaNumero" autostart="false" src=""></audio>
+    </div>
+
+    <div id="Config" class="p-4 bg-light">
+        <h2>Configurações</h2>
+        <form>
+            
+            <div class="row">
+                <!-- Main  -->
+                <div class="col mb-3">
+                    <h4>Principal</h4>
+                    <label for="mainBackgroundColor" class="form-label">Cor de Fundo:</label>
+                    <input type="color" id="mainBackgroundColor" class="form-control" />
+
+                    <label for="mainActualOrderTimeout" class="form-label">Tempo senha chamada:</label>
+                    <input type="number" id="mainActualOrderTimeout" class="form-control" placeholder="Ex: 4 (em seg)" />
+                    <span class="">0 para manual (esc).</span>
+                </div>
+
+                <!-- Actual Order -->            
+                <div class="col mb-3">
+                    <div class="mb-3">
+                        <h4>Pedido Atual</h4>
+                        <label for="actualOrderBackgroundColor" class="form-label">Cor de Fundo:</label>
+                        <input type="color" id="actualOrderBackgroundColor" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="actualOrderTextColor" class="form-label">Cor da Fonte:</label>
+                        <input type="color" id="actualOrderTextColor" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="actualOrderFontSize" class="form-label">Tamanho da Fonte:</label>
+                        <input type="number" id="actualOrderFontSize" class="form-control" placeholder="Ex: 16 (em px)" />
+                    </div>
+                </div>    
+                
+                <div class="col mb-3">
+                    <!-- Last Called Orders -->                    
+                    <h4>Últimos Pedidos</h4>
+                    <div class="mb-3">
+                        <label for="lastOrdersLabelTextColor" class="form-label">Cor da descrição:</label>
+                        <input type="color" id="lastOrdersLabelTextColor" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastOrdersLabelFontSize" class="form-label">Tamanho da descrição:</label>
+                        <input type="number" id="lastOrdersLabelFontSize" class="form-control" placeholder="Ex: 16 (em px)" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastOrdersBackgroundColor" class="form-label">Cor de Fundo pedidos:</label>
+                        <input type="color" id="lastOrdersBackgroundColor" class="form-control" />
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="lastOrdersTextColor" class="form-label">Cor da fonte pedidos:</label>
+                        <input type="color" id="lastOrdersTextColor" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastOrdersFontSize" class="form-label">Tamanho da Fonte pedidos:</label>
+                        <input type="number" id="lastOrdersFontSize" class="form-control" placeholder="Ex: 16 (em px)" />
+                    </div>
+                 </div>
+
+                <div class="col mb-3">
+                    <!-- Full Screen Order -->
+                    <h4>Pedido em Tela Cheia</h4>
+                    <div class="mb-3">
+                        <label for="fullScreenOrderBackgroundColor" class="form-label">Cor de Fundo:</label>
+                        <input type="color" id="fullScreenOrderBackgroundColor" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="fullScreenOrderTextColor" class="form-label">Cor da Fonte:</label>
+                        <input type="color" id="fullScreenOrderTextColor" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="fullScreenOrderFontSize" class="form-label">Tamanho da Fonte:</label>
+                        <input type="number" id="fullScreenOrderFontSize" class="form-control" placeholder="Ex: 16 (em px)" />
+                    </div>                        
+                </div>              
+            </div>            
+            <button id="ConfigSave" type="button" class="btn btn-primary">Salvar Configurações</button>
+        </form>
     </div>
 	<!-- 12/05/2022 - Desenvolvido por Cassio Petrucelli (Unidade Ararquara) - cassio.petrucelli@sescsp.org.br -->
 </body>

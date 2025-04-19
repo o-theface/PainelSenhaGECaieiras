@@ -13,8 +13,8 @@
 
 body {
     background-color: #014888;
-    overflow-y: hidden;
-    overflow-x: hidden;
+    /* overflow-y: hidden;
+    overflow-x: hidden; */
 }
 
 /*Anuncios.img {
@@ -31,9 +31,43 @@ body {
 #SenhaTelaCheia {
     text-align: center;
     font-weight: bold;
-    display: none;
-    width: var(--widthPadrao);
-    height: var(--heightPadrao);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* width: var(--widthPadrao);
+    height: var(--heightPadrao); */
+}
+
+#Config {
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* width: var(--widthPadrao);
+    height: var(--heightPadrao); */
+}
+
+#config h2 {
+    font-weight: bold;
+    color: #014888;
+}
+
+#config label {
+    font-size: 2em;
+    font-weight: bold;
+    color: #014888;
 }
 
 #SenhaAtual {
